@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Locatarium.Models.ResidenceModel>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td width="20%">
+            <span class="bg-white">@Html.DisplayFor(modelItem => item.Name)</span>
+        </td>
+        <td>
+            <span class="bg-white">@Html.DisplayFor(modelItem => item.Address.Street) @Html.DisplayFor(modelItem => item.Address.City), @Html.DisplayFor(modelItem => item.Address.State), @Html.DisplayFor(modelItem => item.Address.PostalCode)</span>
+        </td>
+        <td width="15%">
+            <span class="bg-white">@Html.DisplayFor(modelItem => item.Price) euro</span>
+        </td>
+        <td>
+            @foreach (var itemList in item.ResidenceCategories)
+            {
+                <span>[</span><span class="bg-white">@Html.DisplayFor(modelItem => itemList.Name)</span><span>]</span>
+            }
+        </td>
+        <td width="10%">
+            <a asp-controller="Residences" asp-action="Details" asp-route-id="@item.Id" target="_blank"><div class="col-md-12 mb-1 btn btn-outline-secondary">Details</div></a>
+        </td>
+    </tr>
+}

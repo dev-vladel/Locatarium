@@ -1,0 +1,17 @@
+image: microsoft/dotnet:latest
+
+stages:
+    - build
+    
+before_script:
+    - 'cd Locatarium'
+    - 'dotnet restore'
+    
+build:
+    stage: build
+    script:
+        - 'dotnet build Locatarium.sln'
+    only:
+        - master
+        - dev
+        - /^feature/*$/

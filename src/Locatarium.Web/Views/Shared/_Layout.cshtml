@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Locatarium.Web</title>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-confirm/jquery-confirm.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/residencesScripts.js"></script>
+    <script src="~/js/usersScripts.js"></script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/jquery-confirm/jquery-confirm.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+</head>
+<body>
+    @{
+        var isAuthenticated = Context.User.Identity.IsAuthenticated;
+        var username = Context.User.Identity.Name;
+        var isAdmin = Context.User.HasClaim(c => c.Value == "Administrator");
+    }
+    <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light border-bottom shadow bg-white mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Locatarium.Web</a>
+                <span>|</span>
+                <a class="nav-link text-dark" asp-controller="Residences" asp-action="Search">Search residences...</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse flex-sm-row-reverse">
+                    <ul class="navbar-nav ml-auto">
+                        @{
+                            if (!isAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Users" asp-action="Login">Login</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Users" asp-action="Register">Register</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Users" asp-action="Details">Hi, @username</a>
+                                </li>
+                                if (isAdmin)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-controller="Users" asp-action="Items">Users</a>
+                                    </li>
+                                }
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Residences" asp-action="Items">My residences</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Users" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="particles-js">
+        <canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="575" height="948"></canvas>
+    </div>
+    <div class="container-fluid">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="~/lib/particles-js/particles.js"></script>
+    <script type="text/javascript" src="~/lib/particles-js/app.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

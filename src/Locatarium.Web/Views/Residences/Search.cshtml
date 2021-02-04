@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Locatarium.Models.ResidenceModel>
+
+@{
+    ViewData["Title"] = "Locatarium - Search Apartments";
+}
+
+<!-- Page Content -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 my-4">
+            <h3 class="card-title text-center"><span class="fas fa-city">&nbsp</span><span class="bg-white">Search all residences</span></h3>
+            <div class="row mb-4 mt-3">
+                <div class="row m-auto">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><strong>Name</strong></span>
+                            </div>
+                            <input type="text" name="name" id="inputName" class="border-info" required />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><strong>Minimum Price</strong></span>
+                            </div>
+                            <input type="number" min="0" name="minPrice" id="inputMinPrice" class="border-info" required />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><strong>Maximum Price</strong></span>
+                            </div>
+                            <input type="number" min="0" name="maxPrice" id="inputMaxPrice" class="border-info" required />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><strong>Number of rooms</strong></span>
+                            </div>
+                            <input type="number" min="0" name="minPrice" id="inputNumberOfRooms" class="border-info" required />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><strong>Type</strong></span>
+                            </div>
+                            <input type="number" min="0" name="minPrice" id="inputTypeOfRooms" class="border-info" required />
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="button" id="searchButton" onclick="searchResidences()">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table">
+                    <thead class="bg-white">
+                        <tr>
+                            <th width="20%">
+                                @Html.DisplayNameFor(model => model.Name)
+                                <button disabled id="nameAsc" onclick="sortData('name', 'asc')"><span class="fas fa-arrow-up"></span></button>
+                                <button disabled id="nameDesc" onclick="sortData('name', 'desc')"><span class="fas fa-arrow-down"></span></button>
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Address)
+                            </th>
+                            <th width="15%">
+                                @Html.DisplayNameFor(model => model.Price)
+                                <button disabled id="priceAsc" onclick="sortData('price', 'asc')"><span class="fas fa-arrow-up"></span></button>
+                                <button disabled id="priceDesc" onclick="sortData('price', 'desc')"><span class="fas fa-arrow-down"></span></button>
+                            </th>
+                            <th width="25%">
+                                Categories
+                            </th>
+                            <th width="10%">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="partialSearch">
+                        <!-- JQuery will render the partial view-->
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-center bg-white" id="noResults">There were no results found matching the search inputs.</p>
+        </div>
+    </div>
+</div>
+

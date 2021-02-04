@@ -1,0 +1,63 @@
+﻿@model Locatarium.Web.ViewModels.UserViewModel
+
+@{
+    ViewData["Title"] = "Locatarium - User Account Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 my-4">
+            <h3 class="card-title text-center"><span class="bg-white"><i class="fas fa-user-tag"><span>&nbsp;</span></i>User Account Details</span></h3>
+            <h6 class="card-title text-center"><i>Modify only the fields you want changed</i></h6>
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <form asp-action="Details">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <strong><label class="control-label bg-white">First Name</label></strong>
+                            <input asp-for="FirstNameVM" class="form-control shadow" />
+                            <span asp-validation-for="FirstNameVM" class="text-danger"></span>
+                        </div>
+                        <div class="form-group py-2">
+                            <strong><label class="control-label bg-white">Last Name</label></strong>
+                            <input asp-for="LastNameVM" class="form-control shadow" />
+                            <span asp-validation-for="LastNameVM" class="text-danger"></span>
+                        </div>
+                        <div class="form-group py-2">
+                            <strong><label class="control-label bg-white">Email</label></strong>
+                            <input asp-for="EmailVM" class="form-control shadow" />
+                            <span asp-validation-for="EmailVM" class="text-danger"></span>
+                        </div>
+                        <div class="form-group py-2">
+                            <strong><label class="control-label bg-white">Phone</label></strong>
+                            <input asp-for="PhoneVM" class="form-control shadow" />
+                            <span asp-validation-for="PhoneVM" class="text-danger"></span>
+                        </div>
+                        <hr />
+                        <h6 class="card-title text-center"><i>Leave blank if you don't want to change your password</i></h6>
+                        <div class="form-group py-2">
+                            <strong><label class="control-label bg-white">Password</label></strong>
+                            <input asp-for="PasswordVM" class="form-control shadow" name="password" />
+                            <span asp-validation-for="PasswordVM" class="text-danger"></span>
+                        </div>
+                        <div class="form-group py-2">
+                            <strong><label class="control-label bg-white">Confirm Password</label></strong>
+                            <input asp-for="ConfirmPasswordVM" class="form-control shadow" name="confirmPassword" onchange="checkConfirmPassword(password.value, confirmPassword.value)" />
+                            <span asp-validation-for="ConfirmPasswordVM" class="text-danger" id="confirmPasswordSpan"></span>
+                        </div>
+                        <hr />
+                        <div class="row form-group py-2">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-2">
+                                <input type="submit" value="Update" id="updateDetailsButton" class="btn btn-info" />
+                            </div>
+                            <div class="col-md-5"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

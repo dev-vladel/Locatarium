@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Locatarium.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Locatarium - Users";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 my-4">
+            <h3 class="card-title text-center"><span class="bg-white"><i class="fas fa-users"><span>&nbsp;</span></i>Users</span></h3>
+            <div class="row" id="usersPartial">
+                <!-- Residences come here-->
+            </div>
+            <div class="row">
+                <!-- Pagination buttons come here-->
+                <div class="col-md-6 mb-1 d-md-inline" id="usersPaginationButtons">
+                    <button onclick="usersPaginationFirst()" id="usersButtonFirst" class="btn btn-dark">First</button>
+                    <button onclick="usersPaginationPrev()" id="usersButtonPrev" class="btn btn-dark"></button>
+                    <button disabled id="usersButtonCurrent" class="btn btn-dark"></button>
+                    <button onclick="usersPaginationNext()" id="usersButtonNext" class="btn btn-dark"></button>
+                    <button onclick="usersPaginationLast()" id="usersButtonLast" class="btn btn-dark">Last</button>
+                </div>
+                <div class="col-md-6 mb-1">
+                    <span class="bg-white">You have <strong><span id="usersTotal"></span></strong> users(s) in total, across <strong><span id="usersPagesTotal"></span></strong> page(s).</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-1 d-md-inline">
+                </div>
+                <div class="col-md-6 mt-1" id="usersPageGoTo">
+                    <button type="submit" onclick="usersPageGoTo()" class="btn btn-dark">Go to page</button>
+                    <input type="number" min="0" id="usersPageGoToInput" class="border-dark col-md-2 text-center" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Locatarium.Models.ResidenceModel>
+
+@{
+    ViewData["Title"] = "Locatarium - My Residences";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 my-4">
+            <h3 class="card-title text-center"><span class="bg-white"><i class="fas fa-home"><span>&nbsp;</span></i>My Residences</span></h3>
+            <div class="row" id="residencesPartial">
+                <!-- Residences come here-->
+            </div>
+            <div class="row">
+                <!-- Pagination buttons come here-->
+                <div class="col-md-6 mb-1 d-md-inline" id="residencesPaginationButtons">
+                    <button onclick="residencesPaginationFirst()" id="residencesButtonFirst" class="btn btn-dark">First</button>
+                    <button onclick="residencesPaginationPrev()" id="residencesButtonPrev" class="btn btn-dark"></button>
+                    <button disabled id="residencesButtonCurrent" class="btn btn-dark"></button>
+                    <button onclick="residencesPaginationNext()" id="residencesButtonNext" class="btn btn-dark"></button>
+                    <button onclick="residencesPaginationLast()" id="residencesButtonLast" class="btn btn-dark">Last</button>
+                </div>
+                <div class="col-md-6 mb-1 ">
+                    <span class="bg-white">You have <strong><span id="residencesTotal"></span></strong> residence(s) in total, across <strong><span id="residencesPagesTotal"></span></strong> page(s).</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-1 d-md-inline">
+                    <a asp-controller="Residences" asp-action="Create"><div class="btn btn-success">Create new residence</div></a>
+                </div>
+                <div class="col-md-6 mt-1" id="residencesPageGoTo">
+                    <button type="submit" onclick="residencesPageGoTo()" class="btn btn-dark">Go to page</button>
+                    <input type="number" min="0" id="residencesPageGoToInput" class="border-dark col-md-2 text-center" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

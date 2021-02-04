@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Locatarium.Models.ResidenceModel>
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3 my-3">
+        <div class="card shadow">
+            <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Images[0])" alt="residence_img">
+            <div class="card-body">
+                <h4 class="card-title">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </h4>
+                <p class="card-text">
+                    @Html.DisplayFor(modelItem => item.Address.Street),
+                    @Html.DisplayFor(modelItem => item.Address.PostalCode),
+                    @Html.DisplayFor(modelItem => item.Address.State),
+                    @Html.DisplayFor(modelItem => item.Address.City),
+                </p>
+                @foreach (var itemList in item.ResidenceCategories)
+                {
+                    <span>[</span>@Html.DisplayFor(modelItem => itemList.Name)<span>]</span>
+                    <div class="row"></div>
+                }
+                    <p class="card-text float-right">Price: @Html.DisplayFor(modelItem => item.Price) euro</p>
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Residences" asp-action="Details" asp-route-id="@item.Id" target="_blank" class="btn btn-outline-primary">Details...</a>
+            </div>
+        </div>
+    </div>
+}
+

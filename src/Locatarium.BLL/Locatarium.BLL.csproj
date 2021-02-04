@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Locatarium.DAL\Locatarium.DAL.csproj" />
+    <ProjectReference Include="..\Locatarium.Models\Locatarium.Models.csproj" />
+  </ItemGroup>
+
+</Project>

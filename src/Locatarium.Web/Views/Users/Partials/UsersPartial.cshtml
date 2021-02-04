@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Locatarium.Models.UserModel>
+
+<table class="table">
+    <thead class="bg-white">
+        <tr>
+            <th width="25%">
+                <span class="bg-white">Full Name</span>
+            </th>
+            <th>
+                <span class="bg-white">Email</span>
+            </th>
+            <th width="15%">
+                <span class="bg-white">Role</span>
+            </th>
+            <th>
+                <span class="bg-white">Status</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="25%">
+                    <span class="bg-white">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</span>
+                </td>
+                <td>
+                    <span class="bg-white">@Html.DisplayFor(modelItem => item.Email)</span>
+                </td>
+                <td width="15%">
+                    <span class="bg-white">@Html.DisplayFor(modelItem => item.Role)</span>
+                </td>
+                <td>
+                    @if(item.IsBanned)
+                    {
+                        <div class="col-md-8 btn btn-success" onclick="unbanUser(@item.Id)">
+                            Unban
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-8 btn btn-danger" onclick="banUser(@item.Id)">
+                            Ban
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
